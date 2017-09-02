@@ -11,16 +11,9 @@ def Tocsv(num,a,b):
 		c='bbb'
 	if num=="台泥":
 		c='aaa'
-	#if num=="中石化":
-	#	c='aaa'
-	#if num=="金指期":
-	#	c='ccc'
-	
 
-	#cur.execute('SELECT*FROM '+c+ ' WHERE DateTime BETWEEN '+'"'+a+'"'+' AND '+'"'+b+'"')
-	#cur.execute('SELECT*FROM '+c)
 	cur.execute('SELECT*FROM  %s WHERE %s BETWEEN %s%s%s AND %s%s%s' %(c,"date",'"',a,'"','"',b,'"'))
-	#print('SELECT*FROM '+c+ ' WHERE DateTime BETWEEN '+'"'+a+'"'+' AND '+'"'+b+'"')
+	
 	rows=cur.fetchall()
 
 	x=""
@@ -34,7 +27,8 @@ def Tocsv(num,a,b):
 			else:
 				x+=(str(rows[i])+",")
 
-	w = open("./cache/8-11.csv",'w')
+	csvname = "0_"+c+"_"+a+"_"+b
+	w = open("./cache/"+csvname+".csv",'w')
 	w.write(x)
 
 	w.close
